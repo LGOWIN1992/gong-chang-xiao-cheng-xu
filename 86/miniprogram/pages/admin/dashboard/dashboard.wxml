@@ -1,0 +1,44 @@
+<!--pages/admin/dashboard/dashboard.wxml-->
+<wxs module="util">
+  function includes(arr, item) {
+    return arr.indexOf(item) > -1
+  }
+  module.exports.includes = includes
+</wxs>
+
+<view class="container">
+  <view class="action-bar">
+    <button class="action-btn primary" bindtap="onAdd">新增货物</button>
+    <button class="action-btn" bindtap="onImport">导入Excel</button>
+    <button class="action-btn" bindtap="onExport">导出Excel</button>
+    <button class="action-btn {{isSelectionMode ? 'active' : ''}}" bindtap="toggleSelectionMode">{{isSelectionMode ? '取消选择' : '批量删除'}}</button>
+    <button wx:if="{{isSelectionMode}}" class="action-btn warn" bindtap="batchDelete" disabled="{{selectedIds.length === 0}}">删除({{selectedIds.length}})</button>
+    <button wx:if="{{isSelectionMode}}" class="action-btn" bindtap="selectAll">全选/反选</button>
+    <button wx:if="{{isSelectionMode}}" class="action-btn warn" style="margin-left: auto;" bindtap="onClearAll">⚠️清空所有数据</button>
+  </view>
+
+  <view class="list-header">
+    <text>货物列表 (共 {{total}} 条)</text>
+  </view>
+
+  <scroll-view scroll-y class="list-container" bindscrolltolower="onReachBottom">
+    <block wx:for="{{cargoList}}" wx:key="_id">
+      <view class="list-item" bindtap="toggleSelect" data-id="{{item._id}}">
+        <view class="item-checkbox" wx:if="{{isSelectionMode}}">
+           <checkbox checked="{{util.includes(selectedIds, item._id)}}" disabled="true" />
+        </view>
+        <view class="item-info">
+          <text class="item-model">型号: {{item.model}}</text>
+          <text class="item-location">位置: {{item.location}}</text>
+        </view>
+        <view class="item-actions" wx:if="{{!isSelectionMode}}">
+          <view class="btn-edit" data-id="{{item._id}}" catchtap="onEdit">编辑</view>
+          <view class="btn-delete" data-id="{{item._id}}" catchtap="onDelete">删除</view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{cargoList.length === 0 && !isLoading}}" class="empty-tip">暂无数据</view>
+    <view wx:if="{{isLoading}}" class="loading-tip">加载中...</view>
+    <view wx:if="{{!hasMore && cargoList.length > 0}}" class="no-more-tip">没有更多了</view>
+  </scroll-view>
+</view>

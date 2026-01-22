@@ -1,0 +1,74 @@
+/* pages/admin/entry/entry.wxss */
+.container {
+  padding: 20px;
+}
+
+.form-group {
+  background-color: white;
+  border-radius: 8px;
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+.form-item {
+  display: flex;
+  align-items: flex-start; /* 改为顶部对齐，适应多行输入 */
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  width: 80px;
+  color: #333;
+  padding-top: 8px; /* 稍微下移，与输入框对齐 */
+}
+
+.input {
+  flex: 1;
+  height: 40px; /* 增加高度 */
+}
+
+.location-group {
+  align-items: flex-start;
+}
+
+.location-inputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.loc-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.loc-row:last-child {
+  margin-bottom: 0;
+}
+
+.input-mini {
+  width: 60px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.fixed-text {
+  margin-right: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.btn-save {
+  background-color: #07c160;
+  color: white;
+  width: 100%;
+}
