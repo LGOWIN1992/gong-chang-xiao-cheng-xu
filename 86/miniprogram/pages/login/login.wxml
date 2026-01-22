@@ -1,8 +1,0 @@
-<!--pages/login/login.wxml-->
-<view class="container">
-  <view class="login-box">
-    <text class="title">管理员登录</text>
-    <input class="input" password type="text" placeholder="请输入管理员密码" bindinput="onPasswordInput" />
-    <button class="login-btn" bindtap="onLogin">登录</button>
-  </view>
-</view>
